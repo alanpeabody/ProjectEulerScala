@@ -8,13 +8,13 @@ class FibonacciSum(max: Int) {
   }
 
   def evenFibonacci = {
-    fibonacci(List(2,1)).filter(i => i % 2 == 0)
+    fibonacci(Nil).filter(i => i % 2 == 0)
   }
 
-  def fibonacci(soFar: List[Int]): List[Int] = {
-    if (soFar.head > max) return soFar.tail
-
-    fibonacci(soFar.tail.head + soFar.head :: soFar)
+  def fibonacci(soFar: List[Int]): List[Int] = soFar match {
+    case Nil => fibonacci(List(2,1))
+    case soFar if soFar.head > max => soFar.tail
+    case _ => fibonacci(soFar.tail.head + soFar.head :: soFar)
   }
 
 }
